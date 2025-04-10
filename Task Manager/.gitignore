@@ -1,0 +1,32 @@
+﻿# Общие системные файлы
+.DS_Store
+Thumbs.db
+*.user
+*.suo
+*.vs/
+*.vscode/
+
+# Среда разработки (Visual Studio)
+bin/
+obj/
+*.pdb
+*.cache
+*.ncrunchsolution
+*.ncrunchproject
+TestResults/
+[Tt]est[Rr]esult*/
+*.VisualState.xml
+_ReSharper.*/
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+
+# Файлы сборки и публикации
+[Bb]uild/
+[Pp]ublish/
+*.pubxml
+*.opensdf
+*.sdf
+
