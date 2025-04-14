@@ -1,40 +1,34 @@
-﻿using System;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Task_Manager.Models
 {
     public class User
     {
-        public int Id;
-        public string? Name;
-        public string? Email;
-        public string? PasswordHash;
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-        [NotMapped]
-        public List<Task?>? Tasks;
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
 
-        public User(int Id, string? Name, string? Email, string? PassworHash) 
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        public string PasswordHash { get; set; }
+        public List<TaskInManage> Tasks { get; set; } = new List<TaskInManage>();
+
+        public User() { }
+
+        public User(string name, string email, string passwordHash)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.Email = Email;
-            this.PasswordHash = PassworHash;
-            Tasks = new List<Task?>();
-        }
-
-        public User(int Id, string? Name, string? Email, string? PassworHash, List<Task?>? Tasks)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Email = Email;
-            this.PasswordHash = PassworHash;
-            this.Tasks = Tasks;
+            Name = name;
+            Email = email;
+            PasswordHash = passwordHash;
         }
     }
 }

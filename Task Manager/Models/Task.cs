@@ -1,35 +1,41 @@
 ﻿using System;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using System.Collections;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Task_Manager.Models
 {
-    public class Task_
+    public class TaskInManage
     {
-        public int Id;
-        public string? Title;
-        public string? Description;
-        public DateTime Deadline;
-        public bool IsCompleted;
-        public int UserId;
+        [Key] 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
+        public int Id { get; set; }
 
-        [NotMapped]
-        public User? User;
+        [Required] 
+        [StringLength(100)] 
+        public string Title { get; set; }
 
-        public Task_(int id, string? title, string? description, DateTime deadline, bool isCompleted, int userId, User? user)
+        public string Description { get; set; }
+
+        [Required]
+        public DateTime Deadline { get; set; }
+
+        public bool IsCompleted { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")] 
+        public User User { get; set; }
+
+        public TaskInManage() { }
+
+        public TaskInManage(string title, string description, DateTime deadline, int userId)
         {
-            Id = id;
             Title = title;
             Description = description;
             Deadline = deadline;
-            IsCompleted = isCompleted;
             UserId = userId;
-            User = user;
+            IsCompleted = false;
         }
     }
 }
