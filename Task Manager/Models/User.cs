@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Task_Manager.Models
 {
@@ -14,6 +15,8 @@ namespace Task_Manager.Models
         public string? Name;
         public string? Email;
         public string? PasswordHash;
+
+        [NotMapped]
         public List<Task?>? Tasks;
 
         public User(int Id, string? Name, string? Email, string? PassworHash) 
